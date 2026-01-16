@@ -1,0 +1,8 @@
+# requirements.txt generated from requirements.md
+recharts
+framer-motion
+lucide-react
+date-fns
+react-day-picker
+clsx
+tailwind-merge
