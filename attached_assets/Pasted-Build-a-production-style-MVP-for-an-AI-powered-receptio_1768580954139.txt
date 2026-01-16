@@ -1,0 +1,35 @@
+Build a production-style MVP for an AI-powered receptionist that businesses use to automate Appointment Booking and Product Ordering using voice and text. The system must feature a real-time voice interface for customers and a data-rich Admin Dashboard for business owners.
+
+1. Core Technology Stack (Free Tier Focused):
+
+Backend: Node.js (Express) with a PostgreSQL database (Drizzle ORM).
+Frontend: React (Tailwind CSS, Shadcn UI, Recharts for analytics).
+AI Engine: OpenAI gpt-4o-mini for intent extraction and conversational logic.
+Voice STT/TTS: Browser-native Web Speech API (free, no API keys required).
+Email Notifications: Nodemailer using free SMTP (Gmail/Outlook) for booking confirmations.
+2. Key Feature Specifications:
+
+Persistent Memory: Implement a chat_history database table. The assistant must use a sessionId (stored in sessionStorage) to remember the context of the current conversation (e.g., remembering which product was mentioned earlier).
+Hybrid Assistant Logic: The AI must intelligently switch between:
+Appointment Booking: Parsing names, dates, and times, checking availability, and logging to the DB.
+Order Management: Checking live stock from the database and processing orders.
+Business Info: Answering FAQs about hours or services.
+Receptionist UI:
+A large, centered microphone button with visual state indicators (Listening, Processing, Speaking).
+A real-time chat log displaying the conversation history.
+A "Reset Conversation" button to clear the current session.
+Admin Dashboard:
+Overview: Analytics charts (using Recharts) for today’s volume.
+Appointments: A searchable table/list of all bookings.
+Orders: A status-driven management table (Pending, Completed, Cancelled).
+Products/Stock: CRUD interface for inventory with low-stock alerts.
+3. Advanced Logic Rules:
+
+Deterministic Actions: Never hallucinate data. If a product is out of stock, the AI must explicitly say so based on database values.
+Minimal Clarification: If a user says "Book me for Tuesday," the AI should ask for the time specifically rather than restarting the whole flow.
+Voice Personalization: On the frontend, fetch the system's available voices via speechSynthesis.getVoices() and allow the user to toggle between them.
+4. Implementation Strategy:
+
+Start by defining the database schema for products, orders, appointments, settings, and chat_history.
+Build the intent extraction API that takes text, mode, and sessionId.
+Implement the frontend voice-to-text loop: Listen -> API Call -> Text Response -> Speak.
